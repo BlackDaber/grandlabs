@@ -11,6 +11,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class BuggyControllerImpl implements BuggyController {
 
+    /**
+     * Responds with a simple greeting message.
+     *
+     * @return a ResponseEntity with HTTP status 200 (OK) and body "Hello World!"
+     */
     @Override
     public ResponseEntity<String> helloWorld() {
         return ResponseEntity.ok("Hello World!");
