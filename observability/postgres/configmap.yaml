@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: postgres-initdb
+  namespace: postgres
+  labels:
+    app.kubernetes.io/name: postgres
+    app.kubernetes.io/part-of: grandlabs
+data:
+  01-create-schema.sh: |-
+    #!/usr/bin/env sh
+    set -eu
+
+    SCHEMA="${POSTGRES_SCHEMA:-public}"
+
+    psql -v ON_ERROR_STOP=1 \
+      --username "$POSTGRES_USER" \
+      --dbname "$POSTGRES_DB" \
+      --set=schema="$SCHEMA" \
+      --set=app_user="$POSTGRES_USER" <<'SQL'
+    CREATE SCHEMA IF NOT EXISTS :"schema";
+    ALTER SCHEMA :"schema" OWNER TO :"app_user";
+    SQL

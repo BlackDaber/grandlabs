@@ -1,0 +1,39 @@
+spring:
+  config:
+    import: vault://
+  cloud:
+    vault:
+      uri: ${VAULT_ADDR:https://vault.grandlabs.com:443}
+      authentication: approle
+      app-role:
+        role-id: ${VAULT_ROLE_ID}
+        secret-id: ${VAULT_SECRET_ID}
+      ssl:
+        trust-store: ${VAULT_SSL_TRUST_STORE:file:../observability/.certs/mkcert-truststore.p12}
+        trust-store-password: ${VAULT_SSL_TRUST_STORE_PASSWORD:changeit}
+        trust-store-type: PKCS12
+      fail-fast: true
+      kv:
+        enabled: true
+        backend: secret
+        default-context: buggy-service/test
+        application-name: ""
+        profiles: ""
+
+  datasource:
+    url: jdbc:postgresql://${POSTGRES_HOST:pg.grandlabs.dev}:${POSTGRES_PORT:5432}/${POSTGRES_DB:grandlabs_dev}
+    username: ${POSTGRES_USER:postgres}
+    password: ${POSTGRES_PASSWORD}
+    hikari:
+      max-lifetime: 1800000
+
+logging:
+  level:
+    org.springframework.cloud.*: DEBUG
+    ru.grandlabs.*: DEBUG
+    org.springframework.security: DEBUG
+    org.springframework.security.oauth2.client: DEBUG
+    org.springframework.security.web.context: DEBUG
+    org.springframework.session: DEBUG
+  appender:
+    name: CONSOLE

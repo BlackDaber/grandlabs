@@ -1,0 +1,41 @@
+spring:
+  application:
+    name: buggy-service
+  profiles:
+    active: dev
+  liquibase:
+    change-log: liquibase/changelog.xml
+    default-schema: ${spring.datasource.hikari.schema}
+    liquibase-schema: ${spring.datasource.hikari.schema}
+  datasource:
+    hikari:
+      schema: ${POSTGRES_SCHEMA:buggy}
+
+server:
+  servlet:
+    context-path: /${spring.application.name}
+  port: 8080
+  shutdown: graceful
+
+management:
+  server:
+    port: 8081
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      probes:
+        enabled: true
+      group:
+        liveness:
+          include: livenessState
+        readiness:
+          include: readinessState
+          additional-path: server:/readyz
+
+springdoc:
+  swagger-ui:
+    enabled: true
+    path: /swagger-ui
