@@ -10,6 +10,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/api/v1/buggy")
 public interface BuggyController {
 
+    /**
+     * Provide a hello world message.
+     *
+     * @return the ResponseEntity containing the "hello world" string
+     */
     @Operation(
             summary = "get hello world",
             description = "returns hello world"
