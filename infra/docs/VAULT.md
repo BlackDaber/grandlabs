@@ -36,7 +36,7 @@ make -C infra/vault -f Makefile.deploy-vault.mk minikube-up
 make -C infra/vault -f Makefile.deploy-vault.mk vault-install
 ```
 
-The install command installs the HashiCorp Vault chart with [infra/vault/values-dev.yaml](infra/vault/values-dev.yaml).
+The install command installs the HashiCorp Vault chart with [infra/vault/values-dev.yaml](../infra/vault/values-dev.yaml).
 
 ## Open Local Access
 
