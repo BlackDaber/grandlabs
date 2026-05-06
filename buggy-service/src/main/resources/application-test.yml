@@ -3,15 +3,11 @@ spring:
     import: vault://
   cloud:
     vault:
-      uri: ${VAULT_ADDR:https://vault.grandlabs.com:443}
+      uri: ${VAULT_ADDR}
       authentication: approle
       app-role:
         role-id: ${VAULT_ROLE_ID}
         secret-id: ${VAULT_SECRET_ID}
-      ssl:
-        trust-store: ${VAULT_SSL_TRUST_STORE:file:../observability/.certs/mkcert-truststore.p12}
-        trust-store-password: ${VAULT_SSL_TRUST_STORE_PASSWORD:changeit}
-        trust-store-type: PKCS12
       fail-fast: true
       kv:
         enabled: true
@@ -22,8 +18,8 @@ spring:
 
   datasource:
     url: jdbc:postgresql://${POSTGRES_HOST:pg.grandlabs.dev}:${POSTGRES_PORT:5432}/${POSTGRES_DB:grandlabs_dev}
-    username: ${POSTGRES_USER:postgres}
-    password: ${POSTGRES_PASSWORD}
+    username: <in vault>
+    password: <in vault>
     hikari:
       max-lifetime: 1800000
 

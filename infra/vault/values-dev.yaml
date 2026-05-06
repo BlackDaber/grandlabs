@@ -1,0 +1,17 @@
+injector:
+  enabled: false
+
+server:
+  dev:
+    enabled: true
+    devRootToken: root # local dev mode
+
+  service:
+    enabled: true
+    type: ClusterIP
+
+  ingress:
+    enabled: false
+
+ui:
+  enabled: true
