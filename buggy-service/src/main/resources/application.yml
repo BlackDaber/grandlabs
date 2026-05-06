@@ -9,7 +9,7 @@ spring:
     liquibase-schema: ${spring.datasource.hikari.schema}
   datasource:
     hikari:
-      schema: ${POSTGRES_SCHEMA:buggy}
+      schema: buggy
 
 server:
   servlet:
