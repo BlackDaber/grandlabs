@@ -26,7 +26,7 @@ psql --version
 - Bitnami PostgreSQL service `postgres-postgresql`
 - Persistent volume claim for PostgreSQL data
 
-The chart values are in [infra/postgres/values-dev.yaml](/Users/blackdaber/GitHub/grandlabs/infra/postgres/values-dev.yaml:1).
+The chart values are in [infra/postgres/values-dev.yaml](infra/postgres/values-dev.yaml).
 
 ## Local Environment
 
@@ -112,7 +112,7 @@ jdbc:postgresql://${POSTGRES_HOST:127.0.0.1}:${POSTGRES_PORT:5432}/${POSTGRES_DB
 
 So for local host execution, the default host and port are enough.
 
-Datasource username and password are expected from Vault in the current application config. See [VAULT.md](/Users/blackdaber/GitHub/grandlabs/infra/docs/VAULT.md:1) for AppRole setup and Vault secret updates.
+Datasource username and password are expected from Vault in the current application config. See [VAULT.md](/infra/docs/VAULT.md) for AppRole setup and Vault secret updates.
 
 ## Kubernetes DNS
 
